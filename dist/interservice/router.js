@@ -8,5 +8,5 @@ const controller_1 = __importDefault(require("./controller"));
 const interserviceRouter = (0, express_1.Router)();
 const controller = new controller_1.default();
 interserviceRouter.put('/put-new-point', controller.addPoint);
-interserviceRouter.patch('/reset-cache', controller.resetCache);
+interserviceRouter.put('/reset-cache', controller.resetCache);
 exports.default = interserviceRouter;

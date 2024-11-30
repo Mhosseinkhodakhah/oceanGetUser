@@ -8,6 +8,6 @@ const controller = new interServiceController()
 
 interserviceRouter.put('/put-new-point' , controller.addPoint)
 
-interserviceRouter.patch('/reset-cache' , controller.resetCache )
+interserviceRouter.put('/reset-cache' , controller.resetCache )
 
 export default interserviceRouter;

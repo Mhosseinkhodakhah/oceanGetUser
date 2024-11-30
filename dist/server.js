@@ -55,5 +55,5 @@ app.listen(port, () => {
     console.log('user get server is running successfully . . .');
 });
 app.use('/app', router_1.default);
-app.use('/interservice', router_2.default);
+app.use('/app/interservice', router_2.default);
 app.use('/', router_3.default);

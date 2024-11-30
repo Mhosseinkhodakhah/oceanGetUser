@@ -96,7 +96,7 @@ app.listen(port, () => {
 
 app.use('/app' , router)
 
-app.use('/interservice' , interserviceRouter)
+app.use('/app/interservice' , interserviceRouter)
 
 app.use('/' , adminRouter)
 
