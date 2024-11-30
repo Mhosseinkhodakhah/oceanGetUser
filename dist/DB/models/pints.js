@@ -31,6 +31,6 @@ const pointSchema = new mongoose_1.Schema({
             point: { type: Number }
         }],
     user: { type: mongoose_1.default.Types.ObjectId, ref: 'user' }
-});
+}, { timestamps: true });
 const pointModel = (0, mongoose_1.model)('points', pointSchema);
 exports.default = pointModel;

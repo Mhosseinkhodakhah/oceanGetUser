@@ -27,7 +27,7 @@ const userSchema = new Schema<user>({
     school: { type: String, trim: true },
 
     points: { type: mongoose.Types.ObjectId, ref: 'points' }
-})
+},{timestamps:true})
 
 
 const UserModel = model<user>('user', userSchema)

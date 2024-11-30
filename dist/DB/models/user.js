@@ -44,6 +44,6 @@ const userSchema = new mongoose_1.Schema({
     resetPasswordToken: { type: String, default: null },
     school: { type: String, trim: true },
     points: { type: mongoose_1.default.Types.ObjectId, ref: 'points' }
-});
+}, { timestamps: true });
 const UserModel = (0, mongoose_1.model)('user', userSchema);
 exports.default = UserModel;

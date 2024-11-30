@@ -12,7 +12,7 @@ const pointSchema = new Schema<pointDB>({
         point: { type: Number }
     }],
     user : {type : mongoose.Types.ObjectId , ref : 'user'}
-})
+},{timestamps:true})
 
 
 const pointModel = model<pointDB>('points' , pointSchema)
