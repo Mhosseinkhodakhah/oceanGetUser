@@ -125,7 +125,8 @@ class userControlers {
                 language: user === null || user === void 0 ? void 0 : user.language
             };
             const token = yield services.tokenize(data);
-            const newData = Object.assign(Object.assign({}, data), { token: token });
+            const refreshToken = yield services.tokenize({ email: user === null || user === void 0 ? void 0 : user.email });
+            const newData = Object.assign(Object.assign({}, data), { token: token, refreshToken: refreshToken });
             return next(new response_1.response(req, res, 'refresh token', 200, null, { user: newData }));
         });
     }

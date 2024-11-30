@@ -15,7 +15,7 @@ const adminAuth = new middleware_1.default().adminAuth;
 router.get('/test', (req, res, next) => {
     res.status(200).send('test passed');
 });
-router.get('/refresh-token', validators_1.refreshRule, controller.refreshToken);
+router.post('/refresh-token', validators_1.refreshRule, controller.refreshToken);
 router.get('/check-token', middleware.auth, controller.checkToken);
 router.get('/forget-password', validators_1.forgetRole, controller.forgetPassword);
 router.get('/get-user', middleware.auth, controller.getUser);

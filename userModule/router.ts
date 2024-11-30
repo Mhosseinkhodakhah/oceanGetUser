@@ -20,7 +20,7 @@ router.get('/test' , (req:any , res:any , next:any)=>{
     res.status(200).send('test passed')
 })
 
-router.get('/refresh-token' , refreshRule ,controller.refreshToken)
+router.post('/refresh-token' , refreshRule ,controller.refreshToken)
 
 router.get('/check-token' ,middleware.auth ,controller.checkToken)
 
