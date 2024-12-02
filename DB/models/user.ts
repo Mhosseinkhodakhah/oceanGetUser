@@ -26,7 +26,10 @@ const userSchema = new Schema<user>({
 
     school: { type: String, trim: true },
 
-    points: { type: mongoose.Types.ObjectId, ref: 'points' }
+    points: { type: mongoose.Types.ObjectId, ref: 'points' },
+
+    getLicense : {type : Boolean , default : false}
+    
 },{timestamps:true})
 
 

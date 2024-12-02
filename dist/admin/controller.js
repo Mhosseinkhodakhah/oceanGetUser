@@ -15,7 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cach_1 = __importDefault(require("../cache/cach"));
 const pints_1 = __importDefault(require("../DB/models/pints"));
 const user_1 = __importDefault(require("../DB/models/user"));
+const connection_1 = __importDefault(require("../interservice/connection"));
 const response_1 = require("../response");
+const connection = new connection_1.default();
 class adminController {
     getAllUsers(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -82,6 +84,18 @@ class adminController {
                 yield cach_1.default.setter('admin-getUserPoints', pointsRank);
             }
             return next(new response_1.response(req, res, 'get users based on points', 200, null, finalData));
+        });
+    }
+    headerData(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //total users
+            const totalUsers = yield user_1.default.find();
+            //added users on this month
+            const date = (new Date((new Date().getTime() - (30 * 24 * 60 * 60 * 1000))));
+            const lastMonthUsers = yield user_1.default.find({ createdAt: { $gt: date } });
+            const getLicenses = yield user_1.default.find({ getLicense: true });
+            const lessons = yield connection.getLessons();
+            return next(new response_1.response(req, res, 'header data', 200, null, { totalUsers: totalUsers.length, lastMonthUsers: lastMonthUsers.length, getLicenseUsers: getLicenses.length, lessons: lessons.data.length }));
         });
     }
 }

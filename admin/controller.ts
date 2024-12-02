@@ -1,11 +1,12 @@
 import cacher from "../cache/cach";
 import pointModel from "../DB/models/pints";
 import UserModel from "../DB/models/user";
+import interConnection from "../interservice/connection";
 import { response } from "../response";
 
 
 
-
+const connection = new interConnection()
 
 export default class adminController {
 
@@ -69,6 +70,21 @@ export default class adminController {
             await cacher.setter('admin-getUserPoints', pointsRank)
         }
         return next(new response(req, res, 'get users based on points', 200, null, finalData))
+    }
+
+
+    async headerData(req: any, res: any, next: any){
+        //total users
+        const totalUsers = await UserModel.find()
+        //added users on this month
+        const date = (new Date((new Date().getTime()-(30*24*60*60*1000))))
+        const lastMonthUsers = await UserModel.find({createdAt : {$gt : date}})
+
+        const getLicenses = await UserModel.find({getLicense : true})
+
+        const lessons = await connection.getLessons()
+
+        return next(new response(req , res , 'header data' , 200 , null , {totalUsers : totalUsers.length , lastMonthUsers : lastMonthUsers.length , getLicenseUsers : getLicenses.length , lessons:lessons.data.length}))
     }
 
 

@@ -22,7 +22,8 @@ export interface user {
     password :  string,
     language:string,
     resetPasswordToken: string,
-    points : any
+    points : any,
+    getLicense : boolean
 }
 
 

@@ -20,5 +20,5 @@ router.get('/check-token', middleware.auth, controller.checkToken);
 router.get('/forget-password', validators_1.forgetRole, controller.forgetPassword);
 router.get('/get-user', middleware.auth, controller.getUser);
 router.get('/get-points-rank', middleware.auth, controller.getRankPoints);
-router.get('/get-user-point', middleware.auth);
+router.get('/get-user-point', middleware.auth, controller.getUserPoint);
 exports.default = router;
