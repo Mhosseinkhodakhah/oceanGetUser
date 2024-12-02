@@ -19,6 +19,8 @@ export interface user {
 
     school : string,
 
+    profile:string,
+
     password :  string,
     language:string,
     resetPasswordToken: string,
