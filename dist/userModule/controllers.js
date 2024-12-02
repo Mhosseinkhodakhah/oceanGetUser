@@ -183,8 +183,21 @@ class userControlers {
     }
     getUser(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield user_1.default.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken']);
-            return next(new response_1.response(req, res, 'get user', 200, null, { user: user }));
+            let cacheData = yield cach_1.default.getter(`getUser-${req.user.id}`);
+            let finalData;
+            if (cacheData) {
+                console.log('read throw cache . . .');
+                finalData = cacheData;
+            }
+            else {
+                console.log('cache is empty . . .');
+                const finalData = yield user_1.default.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken']);
+                if (finalData) {
+                    yield cach_1.default.setter(`getUser-${req.user.id}`, finalData);
+                    console.log('cache heat successfull . . .');
+                }
+            }
+            return next(new response_1.response(req, res, 'get user', 200, null, { user: finalData }));
         });
     }
     getRankPoints(req, res, next) {

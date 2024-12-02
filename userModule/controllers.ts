@@ -25,7 +25,7 @@ export default class userControlers {
         body.password = hash
         const user = await UserModel.create(body)
         const point = await pointModel.create({ user: user._id })
-        await UserModel.findByIdAndUpdate(user._id , {points : point._id })
+        await UserModel.findByIdAndUpdate(user._id, { points: point._id })
         const data: tokenizationInterface = {
             id: (user._id).toString(),
             email: body.email,
@@ -35,8 +35,8 @@ export default class userControlers {
         }
         const token = await services.tokenize(data)
         console.log(token)
-        const refreshToken = await services.refreshTokenize({email : data.email})
-        const newData = { ...data, token: token  , refreshToken : refreshToken}
+        const refreshToken = await services.refreshTokenize({ email: data.email })
+        const newData = { ...data, token: token, refreshToken: refreshToken }
         await cacher.reset()
         return next(new response(req, res, 'register', 200, null, { user: newData }))
     }
@@ -68,8 +68,8 @@ export default class userControlers {
                 language: user?.language
             }
             const token = await services.tokenize(data)
-            const refreshToken = await services.refreshTokenize({email : data.email})
-            const newData = { ...data, token: token , refreshToken : refreshToken }
+            const refreshToken = await services.refreshTokenize({ email: data.email })
+            const newData = { ...data, token: token, refreshToken: refreshToken }
             return next(new response(req, res, 'login', 200, null, { user: newData }))
         }
     }
@@ -77,7 +77,7 @@ export default class userControlers {
 
     async checkToken(req: any, res: any, next: any) {
         const user = await UserModel.findById(req.user.id)
-        return next(new response(req, res, 'check token', 200 , null, { user: user }))
+        return next(new response(req, res, 'check token', 200, null, { user: user }))
     }
 
     async updateUser(req: any, res: any, next: any) {
@@ -100,12 +100,12 @@ export default class userControlers {
             return next(new response(req, res, 'refresh token', 400, bodyError['errors'][0].msg, null))
         }
         console.log(req.body)
-        const verify : any = await services.checkRefreshToken(req.body.refreshToken)
+        const verify: any = await services.checkRefreshToken(req.body.refreshToken)
         // console.log(verify)
         if (!verify) {
             return next(new response(req, res, 'refresh token', 401, 'token expired', null))
         }
-        const user = await UserModel.findOne({email : verify.email})
+        const user = await UserModel.findOne({ email: verify.email })
         const data = {
             id: (user?._id)?.toString(),
             email: user?.email,
@@ -114,8 +114,8 @@ export default class userControlers {
             language: user?.language
         }
         const token = await services.tokenize(data)
-        const refreshToken = await services.tokenize({email : user?.email})
-        const newData = { ...data, token: token , refreshToken : refreshToken }
+        const refreshToken = await services.tokenize({ email: user?.email })
+        const newData = { ...data, token: token, refreshToken: refreshToken }
         return next(new response(req, res, 'refresh token', 200, null, { user: newData }))
     }
 
@@ -126,11 +126,11 @@ export default class userControlers {
         if (!bodyError.isEmpty()) {
             return next(new response(req, res, 'forget password', 400, bodyError['errors'][0].msg, null))
         }
-        const code : string = await services.codeGenerator()
+        const code: string = await services.codeGenerator()
         const { email } = req.body
         const sendEmail = await services.sendEmail(email, code)
         console.log('1111')
-        await UserModel.findOneAndUpdate({ email: email } , { resetPasswordToken: code })
+        await UserModel.findOneAndUpdate({ email: email }, { resetPasswordToken: code })
         console.log('2222')
         return next(new response(req, res, 'forget password', 200, null, 'the code send to your email successfully! please check your email.'))
     }
@@ -172,23 +172,34 @@ export default class userControlers {
 
 
     async getUser(req: any, res: any, next: any) {
-        const user = await UserModel.findById(req.user.id).populate({path : 'points' , select : ['points' , 'pointsLogs']}).select(['-password' , '-resetPasswordToken'])
-      
-        return next(new response(req, res, 'get user', 200, null, { user: user }))
+        let cacheData = await cacher.getter(`getUser-${req.user.id}`)
+        let finalData;
+        if (cacheData) {
+            console.log('read throw cache . . .')
+            finalData = cacheData
+        } else {
+            console.log('cache is empty . . .')
+            const finalData = await UserModel.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken'])
+            if (finalData) {
+                await cacher.setter(`getUser-${req.user.id}`, finalData)
+                console.log('cache heat successfull . . .')
+            }
+        }
+        return next(new response(req, res, 'get user', 200, null, { user: finalData }))
     }
 
 
 
     async getRankPoints(req: any, res: any, next: any) {
-        const points = await pointModel.find().sort({'points' : -1}).populate('user' , 'userName fullName email country')
+        const points = await pointModel.find().sort({ 'points': -1 }).populate('user', 'userName fullName email country')
         console.log('point', points)
         return next(new response(req, res, 'get user point', 200, null, { points: points }))
     }
-    
 
-    async getUserPoint(req: any, res: any, next: any){
+
+    async getUserPoint(req: any, res: any, next: any) {
         const point = await UserModel.findById(req.user.id)
-        return next (new response(req , res , 'get user point' , 200 , null , point?.points))
+        return next(new response(req, res, 'get user point', 200, null, point?.points))
     }
 
 }
