@@ -26,7 +26,7 @@ router.get('/check-token' ,middleware.auth ,controller.checkToken)
 
 router.get('/forget-password' , forgetRole , controller.forgetPassword)
 
-router.get('/get-user' , middleware.auth ,controller.getUser)
+router.get('/get-user-info' , middleware.auth ,controller.getUser)
 
 router.get('/get-points-rank' , middleware.auth ,controller.getRankPoints)
 
