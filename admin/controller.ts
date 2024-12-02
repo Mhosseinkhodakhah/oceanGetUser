@@ -201,8 +201,8 @@ export default class adminController {
             const cityChart = {
                 cities: ['iran', 'vancover', 'otava', 'dubai'],
                 series: [
-                    { name: '2022', value: [50, 60, 80, 30] },
-                    { name: '2023', value: [15, 16, 18, 13] },
+                    { name: '2022', data: [50, 60, 80, 30] },
+                    { name: '2023', data: [15, 16, 18, 13] },
                 ]
             }
 
