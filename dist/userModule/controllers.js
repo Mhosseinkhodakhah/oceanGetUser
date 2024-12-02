@@ -183,7 +183,7 @@ class userControlers {
     }
     getUser(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield user_1.default.findById(req.user.id).populate('points').select(['-password', '-resetPasswordToken']);
+            const user = yield user_1.default.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken']);
             return next(new response_1.response(req, res, 'get user', 200, null, { user: user }));
         });
     }

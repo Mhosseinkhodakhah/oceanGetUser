@@ -172,7 +172,7 @@ export default class userControlers {
 
 
     async getUser(req: any, res: any, next: any) {
-        const user = await UserModel.findById(req.user.id).populate('points').select(['-password' , '-resetPasswordToken'])
+        const user = await UserModel.findById(req.user.id).populate({path : 'points' , select : ['points' , 'pointsLogs']}).select(['-password' , '-resetPasswordToken'])
       
         return next(new response(req, res, 'get user', 200, null, { user: user }))
     }
