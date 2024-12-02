@@ -2714,3 +2714,28 @@
   label: 'right meow!',
   timestamp: '2024-11-26 00:27:44'
 }
+{
+  meta: {
+    req: {
+      url: '/overview-data',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': '7bfc7210-fc88-4f7e-8639-593dbdfd5810',
+        host: 'localhost:5005',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/overview-data',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 372
+  },
+  level: 'info',
+  message: 'GET /overview-data 200 372ms',
+  label: 'right meow!',
+  timestamp: '2024-12-02 12:18:28'
+}

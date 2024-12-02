@@ -15,6 +15,8 @@ adminRouter.get('/get-region-users' ,adminAuth, controller.getRegionUser)
 
 adminRouter.get('/get-user-points' ,adminAuth, controller.getUserPoints)
 
-adminRouter.get('/header-data' , adminAuth , controller.headerData )
+adminRouter.get('/overview-data'  , controller.overView )
+
+
 
 export default adminRouter;
