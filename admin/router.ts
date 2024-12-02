@@ -15,7 +15,7 @@ adminRouter.get('/get-region-users' ,adminAuth, controller.getRegionUser)
 
 adminRouter.get('/get-user-points' ,adminAuth, controller.getUserPoints)
 
-adminRouter.get('/overview-data'  , controller.overView )
+adminRouter.get('/overview-data'  ,adminAuth, controller.overView )
 
 
 

@@ -88,127 +88,136 @@ class adminController {
     }
     overView(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            //total users
-            const totalUsers = yield user_1.default.find();
-            const totalUsersData = {
-                month: [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند",
-                ],
-                counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
-                percent: 25,
-                total: totalUsers.length
-            };
-            //added users on this month
-            const date = (new Date((new Date().getTime() - (30 * 24 * 60 * 60 * 1000))));
-            const lastMonthUsers = yield user_1.default.find({ createdAt: { $gt: date } });
-            const addedUsersData = {
-                month: [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند",
-                ],
-                counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
-                percent: -5,
-                total: lastMonthUsers.length
-            };
-            // users that get license
-            const getLicenses = yield user_1.default.find({ getLicense: true });
-            const getLicenseUserData = {
-                month: [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند",
-                ],
-                counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
-                percent: 6,
-                total: getLicenses.length
-            };
-            const lessons = yield connection.getLessons();
-            const lessonsData = {
-                month: [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند",
-                ],
-                counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
-                percent: 0,
-                total: 0
-            };
-            // make ready for header data
-            const headerData = {
-                ['همه  ی کاربر ها']: totalUsersData,
-                ['کاربر های اضافه شده']: addedUsersData,
-                ['کاربر های موفق']: getLicenseUserData,
-                ['همه ی درس ها']: lessonsData
-            };
-            const piChart = [{ label: 'eourop', value: 150 }, { label: 'asia', value: 50 }, { label: 'africa', value: 60 }, { label: 'america', value: 80 }];
-            const barChart = {
-                month: [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند",
-                ],
-                series: [
-                    { name: 'name1', data: [7, 8, 10, 15, 3, 9, 17, 25, 16, 17, 11, 12] },
-                ]
-            };
-            const cityChart = {
-                cities: ['iran', 'vancover', 'otava', 'dubai'],
-                series: [
-                    { name: '2022', value: [50, 60, 80, 30] },
-                    { name: '2023', value: [15, 16, 18, 13] },
-                ]
-            };
-            const levelData = lessons.data.levelData;
-            console.log(headerData);
-            return next(new response_1.response(req, res, 'header data', 200, null, { header: headerData, piChart: piChart, cityChart: cityChart, barChart: barChart, levelBarChart: levelData }));
+            let cachData = yield cach_1.default.getter('admin-overView');
+            let finalData;
+            if (cachData) {
+                finalData = cachData;
+            }
+            else {
+                //total users
+                const totalUsers = yield user_1.default.find();
+                const totalUsersData = {
+                    month: [
+                        "فروردین",
+                        "اردیبهشت",
+                        "خرداد",
+                        "تیر",
+                        "مرداد",
+                        "شهریور",
+                        "مهر",
+                        "آبان",
+                        "آذر",
+                        "دی",
+                        "بهمن",
+                        "اسفند",
+                    ],
+                    counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
+                    percent: 25,
+                    total: totalUsers.length
+                };
+                //added users on this month
+                const date = (new Date((new Date().getTime() - (30 * 24 * 60 * 60 * 1000))));
+                const lastMonthUsers = yield user_1.default.find({ createdAt: { $gt: date } });
+                const addedUsersData = {
+                    month: [
+                        "فروردین",
+                        "اردیبهشت",
+                        "خرداد",
+                        "تیر",
+                        "مرداد",
+                        "شهریور",
+                        "مهر",
+                        "آبان",
+                        "آذر",
+                        "دی",
+                        "بهمن",
+                        "اسفند",
+                    ],
+                    counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
+                    percent: -5,
+                    total: lastMonthUsers.length
+                };
+                // users that get license
+                const getLicenses = yield user_1.default.find({ getLicense: true });
+                const getLicenseUserData = {
+                    month: [
+                        "فروردین",
+                        "اردیبهشت",
+                        "خرداد",
+                        "تیر",
+                        "مرداد",
+                        "شهریور",
+                        "مهر",
+                        "آبان",
+                        "آذر",
+                        "دی",
+                        "بهمن",
+                        "اسفند",
+                    ],
+                    counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
+                    percent: 6,
+                    total: getLicenses.length
+                };
+                const lessons = yield connection.getLessons();
+                const lessonsData = {
+                    month: [
+                        "فروردین",
+                        "اردیبهشت",
+                        "خرداد",
+                        "تیر",
+                        "مرداد",
+                        "شهریور",
+                        "مهر",
+                        "آبان",
+                        "آذر",
+                        "دی",
+                        "بهمن",
+                        "اسفند",
+                    ],
+                    counts: [5, 10, 20, 40, 6, 18, 7, 5, 70, 12, 16, 20],
+                    percent: 0,
+                    total: 0
+                };
+                // make ready for header data
+                const headerData = {
+                    ['همه  ی کاربر ها']: totalUsersData,
+                    ['کاربر های اضافه شده']: addedUsersData,
+                    ['کاربر های موفق']: getLicenseUserData,
+                    ['همه ی درس ها']: lessonsData
+                };
+                const piChart = [{ label: 'eourop', value: 150 }, { label: 'asia', value: 50 }, { label: 'africa', value: 60 }, { label: 'america', value: 80 }];
+                const barChart = {
+                    month: [
+                        "فروردین",
+                        "اردیبهشت",
+                        "خرداد",
+                        "تیر",
+                        "مرداد",
+                        "شهریور",
+                        "مهر",
+                        "آبان",
+                        "آذر",
+                        "دی",
+                        "بهمن",
+                        "اسفند",
+                    ],
+                    series: [
+                        { name: 'name1', data: [7, 8, 10, 15, 3, 9, 17, 25, 16, 17, 11, 12] },
+                    ]
+                };
+                const cityChart = {
+                    cities: ['iran', 'vancover', 'otava', 'dubai'],
+                    series: [
+                        { name: '2022', value: [50, 60, 80, 30] },
+                        { name: '2023', value: [15, 16, 18, 13] },
+                    ]
+                };
+                const levelData = lessons.data.levelData;
+                console.log(headerData);
+                finalData = { header: headerData, piChart: piChart, cityChart: cityChart, barChart: barChart, levelBarChart: levelData };
+                yield cach_1.default.setter('admin-overView', finalData);
+            }
+            return next(new response_1.response(req, res, 'header data', 200, null, finalData));
         });
     }
 }
