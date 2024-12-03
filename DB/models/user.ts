@@ -29,6 +29,9 @@ const userSchema = new Schema<user>({
     points: { type: mongoose.Types.ObjectId, ref: 'points' },
 
     getLicense : {type : Boolean , default : false},
+
+    level : {type : Number , default : 1},
+
     profile : {type : String , default : ''},
     
     

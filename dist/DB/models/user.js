@@ -45,6 +45,7 @@ const userSchema = new mongoose_1.Schema({
     school: { type: String, trim: true },
     points: { type: mongoose_1.default.Types.ObjectId, ref: 'points' },
     getLicense: { type: Boolean, default: false },
+    level: { type: Number, default: 1 },
     profile: { type: String, default: '' },
 }, { timestamps: true });
 const UserModel = (0, mongoose_1.model)('user', userSchema);
