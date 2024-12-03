@@ -28,6 +28,7 @@ class adminController {
             }
             else {
                 const users = yield user_1.default.find();
+                finalData = users;
                 yield cach_1.default.setter('admin-getAllUsers', users);
             }
             return next(new response_1.response(req, res, 'get all users by admin', 200, null, finalData));

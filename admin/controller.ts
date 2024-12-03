@@ -17,6 +17,7 @@ export default class adminController {
             finalData = cachData
         } else {
             const users = await UserModel.find()
+            finalData = users
             await cacher.setter('admin-getAllUsers', users)
         }
         return next(new response(req, res, 'get all users by admin', 200, null, finalData))
