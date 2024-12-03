@@ -25,7 +25,9 @@ export interface user {
     language:string,
     resetPasswordToken: string,
     points : any,
-    getLicense : boolean
+    getLicense : boolean,
+    isBlocked:boolean
+    
 }
 
 
