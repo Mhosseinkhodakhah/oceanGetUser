@@ -9,7 +9,8 @@ const pointSchema = new Schema<pointDB>({
     points: { type: Number , default : 0},
     pointsLogs: [{
         reason: { type: String },
-        point: { type: Number }
+        point: { type: Number },
+        date : {type : Date}
     }],
     user : {type : mongoose.Types.ObjectId , ref : 'user'}
 },{timestamps:true})
