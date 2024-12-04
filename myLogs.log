@@ -2739,3 +2739,133 @@
   label: 'right meow!',
   timestamp: '2024-12-02 12:18:28'
 }
+{
+  meta: {
+    req: {
+      url: '/app/get-user-info',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGUwYTljMTk5ZTM4MDI0OTg4OGY3YiIsImVtYWlsIjoiaG9zc2VpbkBnbWFpbC5jb20iLCJmdWxsTmFtZSI6ImVsaGFtaW5hZGRkZCIsImNvdW50cnkiOiJncnJyciIsImxhbmd1YWdlIjoiIiwiaWF0IjoxNzMzMzIxNzYyLCJleHAiOjE3MzMzMjUzNjJ9.51bFxMiJpAn2IfcvgKc1X_c75ur-OlhvTklZaJCSB8Q',
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': 'e04137fc-b983-474c-adf9-cd094b3e7faf',
+        host: 'localhost:5005',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/app/get-user-info',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 356
+  },
+  level: 'info',
+  message: 'GET /app/get-user-info 200 356ms',
+  label: 'right meow!',
+  timestamp: '2024-12-04 17:47:55'
+}
+{
+  meta: {
+    req: {
+      url: '/app/get-user-info',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGUwYTljMTk5ZTM4MDI0OTg4OGY3YiIsImVtYWlsIjoiaG9zc2VpbkBnbWFpbC5jb20iLCJmdWxsTmFtZSI6ImVsaGFtaW5hZGRkZCIsImNvdW50cnkiOiJncnJyciIsImxhbmd1YWdlIjoiIiwiaWF0IjoxNzMzMzIxNzYyLCJleHAiOjE3MzMzMjUzNjJ9.51bFxMiJpAn2IfcvgKc1X_c75ur-OlhvTklZaJCSB8Q',
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': 'a9a3937e-5c91-432c-92b3-36924cf6eff3',
+        host: 'localhost:5005',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/app/get-user-info',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 367
+  },
+  level: 'info',
+  message: 'GET /app/get-user-info 200 367ms',
+  label: 'right meow!',
+  timestamp: '2024-12-04 17:48:47'
+}
+{
+  meta: {
+    req: {
+      url: '/app/get-user-info',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGUwYTljMTk5ZTM4MDI0OTg4OGY3YiIsImVtYWlsIjoiaG9zc2VpbkBnbWFpbC5jb20iLCJmdWxsTmFtZSI6ImVsaGFtaW5hZGRkZCIsImNvdW50cnkiOiJncnJyciIsImxhbmd1YWdlIjoiIiwiaWF0IjoxNzMzMzIxNzYyLCJleHAiOjE3MzMzMjUzNjJ9.51bFxMiJpAn2IfcvgKc1X_c75ur-OlhvTklZaJCSB8Q',
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': '0805346a-cb2d-4349-84c8-c540477857ac',
+        host: 'localhost:5005',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/app/get-user-info',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 11
+  },
+  level: 'info',
+  message: 'GET /app/get-user-info 200 11ms',
+  label: 'right meow!',
+  timestamp: '2024-12-04 17:48:48'
+}
+{
+  meta: {
+    req: {
+      url: '/app/get-user-info',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGUwYTljMTk5ZTM4MDI0OTg4OGY3YiIsImVtYWlsIjoiaG9zc2VpbkBnbWFpbC5jb20iLCJmdWxsTmFtZSI6ImVsaGFtaW5hZGRkZCIsImNvdW50cnkiOiJncnJyciIsImxhbmd1YWdlIjoiIiwiaWF0IjoxNzMzMzIxNzYyLCJleHAiOjE3MzMzMjUzNjJ9.51bFxMiJpAn2IfcvgKc1X_c75ur-OlhvTklZaJCSB8Q',
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': '2ccc5d5a-607a-4203-8c9c-d7d13224a825',
+        host: 'localhost:5005',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/app/get-user-info',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 253
+  },
+  level: 'info',
+  message: 'GET /app/get-user-info 200 253ms',
+  label: 'right meow!',
+  timestamp: '2024-12-04 17:49:02'
+}
+{
+  meta: {
+    req: {
+      url: '/app/get-user-info',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGUwYTljMTk5ZTM4MDI0OTg4OGY3YiIsImVtYWlsIjoiaG9zc2VpbkBnbWFpbC5jb20iLCJmdWxsTmFtZSI6ImVsaGFtaW5hZGRkZCIsImNvdW50cnkiOiJncnJyciIsImxhbmd1YWdlIjoiIiwiaWF0IjoxNzMzMzIxNzYyLCJleHAiOjE3MzMzMjUzNjJ9.51bFxMiJpAn2IfcvgKc1X_c75ur-OlhvTklZaJCSB8Q',
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': '15aec50e-33ac-4011-952e-90490b87eb81',
+        host: 'localhost:5005',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/app/get-user-info',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 8
+  },
+  level: 'info',
+  message: 'GET /app/get-user-info 200 8ms',
+  label: 'right meow!',
+  timestamp: '2024-12-04 17:49:04'
+}

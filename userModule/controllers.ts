@@ -179,11 +179,11 @@ export default class userControlers {
             finalData = cacheData
         } else {
             console.log('cache is empty . . .')
-            const finalData = await UserModel.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken'])
+            finalData = await UserModel.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken'])
             if (finalData) {
                 await cacher.setter(`getUser-${req.user.id}`, finalData)
                 console.log('cache heat successfull . . .')
-            }
+            }    
         }
         return next(new response(req, res, 'get user', 200, null, { user: finalData }))
     }

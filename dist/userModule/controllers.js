@@ -191,7 +191,7 @@ class userControlers {
             }
             else {
                 console.log('cache is empty . . .');
-                const finalData = yield user_1.default.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken']);
+                finalData = yield user_1.default.findById(req.user.id).populate({ path: 'points', select: ['points', 'pointsLogs'] }).select(['-password', '-resetPasswordToken']);
                 if (finalData) {
                     yield cach_1.default.setter(`getUser-${req.user.id}`, finalData);
                     console.log('cache heat successfull . . .');
