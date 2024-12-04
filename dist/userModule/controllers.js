@@ -117,6 +117,9 @@ class userControlers {
                 return next(new response_1.response(req, res, 'refresh token', 401, 'token expired', null));
             }
             const user = yield user_1.default.findOne({ email: verify.email });
+            if (!user) {
+                return next(new response_1.response(req, res, 'refresh token', 401, 'token expired', null));
+            }
             const data = {
                 id: (_a = (user === null || user === void 0 ? void 0 : user._id)) === null || _a === void 0 ? void 0 : _a.toString(),
                 email: user === null || user === void 0 ? void 0 : user.email,

@@ -33,6 +33,7 @@ export default class userControlers {
             country: body.country,
             language: body.language
         }
+        
         const token = await services.tokenize(data)
         console.log(token)
         const refreshToken = await services.refreshTokenize({ email: data.email })
@@ -106,6 +107,9 @@ export default class userControlers {
             return next(new response(req, res, 'refresh token', 401, 'token expired', null))
         }
         const user = await UserModel.findOne({ email: verify.email })
+        if (!user){
+            return next(new response(req, res, 'refresh token', 401 , 'token expired', null))
+        }
         const data = {
             id: (user?._id)?.toString(),
             email: user?.email,
