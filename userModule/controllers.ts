@@ -191,7 +191,7 @@ export default class userControlers {
 
 
     async getRankPoints(req: any, res: any, next: any) {
-        const points = await pointModel.find().sort({ 'points': -1 }).populate('user', 'userName fullName email country')
+        const points = await pointModel.find().sort({ 'points': -1 }).populate('user', 'userName fullName email country').limit(10)
         console.log('point', points)
         return next(new response(req, res, 'get user point', 200, null, { points: points }))
     }

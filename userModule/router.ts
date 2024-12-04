@@ -32,4 +32,5 @@ router.get('/get-points-rank' , middleware.auth ,controller.getRankPoints)
 
 router.get('/get-user-point' , middleware.auth , controller.getUserPoint)
 
+
 export default router

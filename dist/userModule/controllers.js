@@ -202,7 +202,7 @@ class userControlers {
     }
     getRankPoints(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const points = yield pints_1.default.find().sort({ 'points': -1 }).populate('user', 'userName fullName email country');
+            const points = yield pints_1.default.find().sort({ 'points': -1 }).populate('user', 'userName fullName email country').limit(10);
             console.log('point', points);
             return next(new response_1.response(req, res, 'get user point', 200, null, { points: points }));
         });
