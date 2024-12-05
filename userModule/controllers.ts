@@ -33,7 +33,7 @@ export default class userControlers {
             country: body.country,
             language: body.language
         }
-        
+
         const token = await services.tokenize(data)
         console.log(token)
         const refreshToken = await services.refreshTokenize({ email: data.email })
@@ -107,8 +107,8 @@ export default class userControlers {
             return next(new response(req, res, 'refresh token', 401, 'token expired', null))
         }
         const user = await UserModel.findOne({ email: verify.email })
-        if (!user){
-            return next(new response(req, res, 'refresh token', 401 , 'token expired', null))
+        if (!user) {
+            return next(new response(req, res, 'refresh token', 401, 'token expired', null))
         }
         const data = {
             id: (user?._id)?.toString(),
@@ -187,7 +187,7 @@ export default class userControlers {
             if (finalData) {
                 await cacher.setter(`getUser-${req.user.id}`, finalData)
                 console.log('cache heat successfull . . .')
-            }    
+            }
         }
         return next(new response(req, res, 'get user', 200, null, { user: finalData }))
     }
@@ -202,8 +202,12 @@ export default class userControlers {
 
 
     async getUserPoint(req: any, res: any, next: any) {
-        const point = await UserModel.findById(req.user.id)
-        return next(new response(req, res, 'get user point', 200, null, point?.points))
+        const point = await pointModel.findOne({ user: req.user.id })
+        if (point) {
+            return next(new response(req, res, 'get user point', 200, null, point?.points))
+        } else {
+            return next(new response(req, res, 'get user point', 204, 'something went wrong . . .', null))
+        }
     }
 
 }

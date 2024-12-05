@@ -212,8 +212,13 @@ class userControlers {
     }
     getUserPoint(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const point = yield user_1.default.findById(req.user.id);
-            return next(new response_1.response(req, res, 'get user point', 200, null, point === null || point === void 0 ? void 0 : point.points));
+            const point = yield pints_1.default.findOne({ user: req.user.id });
+            if (point) {
+                return next(new response_1.response(req, res, 'get user point', 200, null, point === null || point === void 0 ? void 0 : point.points));
+            }
+            else {
+                return next(new response_1.response(req, res, 'get user point', 204, 'something went wrong . . .', null));
+            }
         });
     }
 }
