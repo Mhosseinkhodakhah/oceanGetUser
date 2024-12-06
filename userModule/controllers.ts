@@ -111,11 +111,14 @@ export default class userControlers {
             return next(new response(req, res, 'refresh token', 401, 'token expired', null))
         }
         const data = {
-            id: (user?._id)?.toString(),
+            id: (user?._id),
             email: user?.email,
+            userName: user?.userName,
+            profile: user?.profile,
             fullName: user?.fullName,
             country: user?.country,
-            language: user?.language
+            language: user?.language,
+            school: user?.school
         }
         const token = await services.tokenize(data)
         const refreshToken = await services.tokenize({ email: user?.email })

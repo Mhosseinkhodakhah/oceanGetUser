@@ -104,7 +104,6 @@ class userControlers {
     }
     refreshToken(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            var _a;
             const body = req.body;
             const bodyError = (0, express_validator_1.validationResult)(req);
             if (!bodyError.isEmpty()) {
@@ -121,11 +120,14 @@ class userControlers {
                 return next(new response_1.response(req, res, 'refresh token', 401, 'token expired', null));
             }
             const data = {
-                id: (_a = (user === null || user === void 0 ? void 0 : user._id)) === null || _a === void 0 ? void 0 : _a.toString(),
+                id: (user === null || user === void 0 ? void 0 : user._id),
                 email: user === null || user === void 0 ? void 0 : user.email,
+                userName: user === null || user === void 0 ? void 0 : user.userName,
+                profile: user === null || user === void 0 ? void 0 : user.profile,
                 fullName: user === null || user === void 0 ? void 0 : user.fullName,
                 country: user === null || user === void 0 ? void 0 : user.country,
-                language: user === null || user === void 0 ? void 0 : user.language
+                language: user === null || user === void 0 ? void 0 : user.language,
+                school: user === null || user === void 0 ? void 0 : user.school
             };
             const token = yield services.tokenize(data);
             const refreshToken = yield services.tokenize({ email: user === null || user === void 0 ? void 0 : user.email });
