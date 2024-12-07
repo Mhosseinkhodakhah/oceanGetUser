@@ -18,13 +18,13 @@ const uuid_1 = require("uuid");
 class userService {
     tokenize(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const token = jsonwebtoken_1.default.sign(data, `${process.env.ACCESSKEY}`, { expiresIn: '1m' });
+            const token = jsonwebtoken_1.default.sign(data, `${process.env.ACCESSKEY}`, { expiresIn: '1H' });
             return token;
         });
     }
     refreshTokenize(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const token = jsonwebtoken_1.default.sign(data, `${process.env.ACCESSREFRESHKEY}`, { expiresIn: '5m' });
+            const token = jsonwebtoken_1.default.sign(data, `${process.env.ACCESSREFRESHKEY}`, { expiresIn: '24h' });
             return token;
         });
     }
