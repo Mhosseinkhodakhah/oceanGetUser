@@ -77,7 +77,7 @@ export default class userControlers {
 
 
     async checkToken(req: any, res: any, next: any) {
-        const user = await UserModel.findById(req.user.id)
+        const user = await UserModel.findById(req.user.id).select(['-password' , '-resetPasswordToken'])
         return next(new response(req, res, 'check token', 200, null, { user: user }))
     }
 

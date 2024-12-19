@@ -86,7 +86,7 @@ class userControlers {
     }
     checkToken(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield user_1.default.findById(req.user.id);
+            const user = yield user_1.default.findById(req.user.id).select(['-password', '-resetPasswordToken']);
             return next(new response_1.response(req, res, 'check token', 200, null, { user: user }));
         });
     }
