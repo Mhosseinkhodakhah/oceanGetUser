@@ -82,7 +82,7 @@ export default class userControlers {
     }
 
     async getStages(req: any, res: any, next: any){
-        let stages = {'stage1':500 , 'stage2' : 600 , 'stage3' : 700 , 'stage4' : 800 , 'stage5' : 900 , 'stage6' : 1000 , 'stage7' : 2000 , 'stage8' : 2100}
+        let stages = [500 ,  600 ,  700 ,  800 ,  900 ,  1000 ,  2000 ,  2100]
         let user = await UserModel.findById(req.user.id).populate('points')
         if (!user){
             return next(new response(req , res , 'get stages' , 404 , 'this user is not exist on database' , null))
