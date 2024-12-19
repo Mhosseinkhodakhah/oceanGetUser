@@ -156,7 +156,7 @@ export default class userControlers {
             school: user?.school
         }
         const token = await services.tokenize(data)
-        const refreshToken = await services.tokenize({ email: user?.email })
+        const refreshToken = await services.refreshTokenize({ email: user?.email })
         const newData = { ...data, token: token, refreshToken: refreshToken }
         return next(new response(req, res, 'refresh token', 200, null, { user: newData }))
     }
