@@ -24,6 +24,8 @@ router.post('/refresh-token' , refreshRule ,controller.refreshToken)
 
 router.get('/check-token' ,middleware.auth ,controller.checkToken)
 
+router.get('/stages/userstage' , middleware.auth , controller.getStages)
+
 router.get('/forget-password' , forgetRole , controller.forgetPassword)
 
 router.get('/get-user-info' , middleware.auth ,controller.getUser)

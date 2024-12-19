@@ -17,6 +17,7 @@ router.get('/test', (req, res, next) => {
 });
 router.post('/refresh-token', validators_1.refreshRule, controller.refreshToken);
 router.get('/check-token', middleware.auth, controller.checkToken);
+router.get('/stages/userstage', middleware.auth, controller.getStages);
 router.get('/forget-password', validators_1.forgetRole, controller.forgetPassword);
 router.get('/get-user-info', middleware.auth, controller.getUser);
 router.get('/get-points-rank', middleware.auth, controller.getRankPoints);

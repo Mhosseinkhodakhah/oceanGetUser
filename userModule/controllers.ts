@@ -81,6 +81,41 @@ export default class userControlers {
         return next(new response(req, res, 'check token', 200, null, { user: user }))
     }
 
+    async getStages(req: any, res: any, next: any){
+        let stages = {'1':500 , '2' : 600 , '3' : 700 , '4' : 800 , '5' : 900 , '6' : 1000 , '7' : 2000 , '8' : 2100}
+        let user = await UserModel.findById(req.user.id).populate('points')
+        if (!user){
+            return next(new response(req , res , 'get stages' , 404 , 'this user is not exist on database' , null))
+        }
+        let userStage : number = 0;
+        let userPoint = user.points.points
+        if (userPoint < 500){
+            userStage = 1
+        }
+        if (userPoint < 600 && userPoint >= 500){
+            userStage = 2
+        }
+        if (userPoint < 700 && userPoint >= 600){
+            userStage = 3
+        }
+        if (userPoint < 800 && userPoint >= 700){
+            userStage = 4
+        }
+        if (userPoint < 900 && userPoint >= 800){
+            userStage = 5
+        }
+        if (userPoint < 1000 && userPoint >= 900){
+            userStage = 6
+        }
+        if (userPoint < 2000 && userPoint >= 1000){
+            userStage = 7
+        }
+        if (userPoint < 2100 && userPoint >= 2000){
+            userStage = 8
+        }
+        return next(new response(req , res , 'get stages' , 200 , null , {stages : stages , userStage : userStage}))
+    }
+
     async updateUser(req: any, res: any, next: any) {
         const existance = await UserModel.exists({ _id: req.user.id })
         if (!existance) {
