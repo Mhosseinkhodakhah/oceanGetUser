@@ -34,6 +34,7 @@ const userSchema = new Schema<user>({
 
     profile : {type : String , default : ''},
     
+    isBlocked : {type : Boolean , default : false}
     
 },{timestamps:true})
 

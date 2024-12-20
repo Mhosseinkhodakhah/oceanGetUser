@@ -47,6 +47,7 @@ const userSchema = new mongoose_1.Schema({
     getLicense: { type: Boolean, default: false },
     level: { type: Number, default: 1 },
     profile: { type: String, default: '' },
+    isBlocked: { type: Boolean, default: false }
 }, { timestamps: true });
 const UserModel = (0, mongoose_1.model)('user', userSchema);
 exports.default = UserModel;
